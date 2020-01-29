@@ -2,6 +2,7 @@ import App from 'next/app';
 import Head from 'next/head'
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/style.scss';
 
 
 class MyApp extends App {
