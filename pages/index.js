@@ -8,7 +8,7 @@ const Index = () =>{
         <>
             <Head/>
         <div className={css.example}>
-            vaimee
+            Index
         </div>
             </>
     )
