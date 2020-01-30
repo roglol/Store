@@ -1,24 +1,14 @@
 const next = require('next')
 const express = require('express')
-
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
-var mysql = require('mysql');
+const PDO = require('pdo')
+const db = new PDO()
+var dsn = "mysql:host='localhost';dbname='store';charset='utf8mb4'";
 
-var con = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '',
-    database : 'store'
-  });
+var pdo = db.open(dsn,'root','123456');
 
-  con.connect(function(err) {
-    if (err) throw err
-    console.log('You are now connected with mysql database...')
-  })
-
- 
 
 app.prepare()
     .then(() => {
@@ -30,11 +20,15 @@ app.prepare()
         // server.get('/favicon.ico', (req, res) => res.status(204));
 
 
-        router.get('/products', (req,res) =>{
-                con.query("SELECT * FROM products WHERE NAME='gialo' OR  NAME='fridge'", function (err, result, fields) {
-                  if (err) throw err;
-                  res.send(result)
-                });
+        router.get('/products', async (req,res) =>{
+            await db.open(dsn);
+            let response = db.query(
+                `
+    SELECT *
+    FROM products
+            `)
+            await db.close();
+            res.send(response)
         })
 
         server.get('*', (req,res) =>{

@@ -7,9 +7,11 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
     "mysql": "^2.18.1",
     "next": "^9.2.1",
     "node-sass": "^4.13.1",
+    "pdo": "^1.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
